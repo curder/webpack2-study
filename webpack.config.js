@@ -1,29 +1,45 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-    app: path.join(__dirname , 'app'),
-    dist: path.join(__dirname, 'dist'),
-}
+  app: path.join(__dirname , 'app'),
+  dist: path.join(__dirname, 'dist'),
+};
 
 const config = {
-    devServer: {
-        contentBase: PATHS.dist,
-        host: process.env.HOST,
-        port: 9000
+  devServer: {
+    host: process.env.HOST, // Defaults to `localhost`
+    port: 9000, // Defaults to 8080
+    overlay: {
+      errors: true,
+      warnings: true,
     },
-    entry: {
-        app: PATHS.app,
-    },
-    output: {
-        path: PATHS.dist,
-        filename: "[name].js",
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: "Webpack Demo",
-        }),
-    ]
+  },
+  entry: {
+    app: PATHS.app,
+  },
+  output: {
+    path: PATHS.dist,
+    filename: '[name].js',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Webpack Demo',
+    }),
+  ],
+  module:{
+    rules:[
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        },
+      },
+    ],
+  },
 };
 
 module.exports = config;
