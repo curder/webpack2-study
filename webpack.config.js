@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -25,6 +26,7 @@ const config = {
   },
   entry: {
     app: PATHS.app,
+    vendor: [ 'react' ],
   },
   output: {
     path: PATHS.dist,
@@ -36,6 +38,9 @@ const config = {
     }),
     plugin,
     new MinifyPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+    }),
   ],
   performance: {
     hints: 'warning',
