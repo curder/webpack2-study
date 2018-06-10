@@ -1,10 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname , 'app'),
   dist: path.join(__dirname, 'dist'),
 };
+
+const plugin = new ExtractTextPlugin({
+  filename: '[name].css',
+  ignoreOrder: true,
+});
 
 const config = {
   devServer: {
@@ -26,6 +32,7 @@ const config = {
     new HtmlWebpackPlugin({
       title: 'Webpack Demo',
     }),
+    plugin,
   ],
   module:{
     rules:[
@@ -41,15 +48,15 @@ const config = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
+        use: plugin.extract({
+          use: {
             loader: 'css-loader',
             options: {
               modules: true,
             },
           },
-        ],
+          fallback : 'style-loader',
+        }),
       },
     ],
   },
