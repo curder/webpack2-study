@@ -1,8 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const MinifyPlugin = require("babel-minify-webpack-plugin"); // https://github.com/webpack-contrib/babel-minify-webpack-plugin
+const MinifyPlugin = require('babel-minify-webpack-plugin'); // https://github.com/webpack-contrib/babel-minify-webpack-plugin
 
 const PATHS = {
   app: path.join(__dirname , 'app'),
@@ -25,7 +25,9 @@ const config = {
     },
   },
   entry: {
-    app: PATHS.app,
+    // app: PATHS.app,
+    index: './app/index.js',
+    about: './app/about.js',
     vendor: [ 'react' ],
   },
   output: {
@@ -33,9 +35,9 @@ const config = {
     filename: '[name].js',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack Demo',
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Webpack Demo',
+    // }),
     plugin,
     new MinifyPlugin(),
     new webpack.optimize.CommonsChunkPlugin({

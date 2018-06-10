@@ -1,5 +1,5 @@
 import component from './component';
-import './main.css';
+import './index.css';
 
 import 'react';
 
