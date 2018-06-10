@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const BabiliPlugin = require('babili-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin"); // https://github.com/webpack-contrib/babel-minify-webpack-plugin
 
 const PATHS = {
   app: path.join(__dirname , 'app'),
@@ -14,6 +14,7 @@ const plugin = new ExtractTextPlugin({
 });
 
 const config = {
+  devtool: 'source-map',
   devServer: {
     host: process.env.HOST, // Defaults to `localhost`
     port: 9000, // Defaults to 8080
@@ -34,7 +35,7 @@ const config = {
       title: 'Webpack Demo',
     }),
     plugin,
-    new BabiliPlugin(),
+    new MinifyPlugin(),
   ],
   performance: {
     hints: 'warning',

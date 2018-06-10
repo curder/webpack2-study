@@ -12,8 +12,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "resolutions": {
+    "webpack-sources": "1.0.1"
+  },
   "devDependencies": {
-    "babili-webpack-plugin": "^0.1.2",
+    "babel-minify-webpack-plugin": "^0.3.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
