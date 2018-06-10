@@ -38,7 +38,7 @@ const config = {
   ],
   performance: {
     hints: 'warning',
-    maxEntrypointSize: 100000, // bytes
+    maxEntrypointSize: 500000, // bytes
     maxAssetSize: 450000, // bytes
   },
   module:{
