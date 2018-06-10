@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BabiliPlugin = require('babili-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname , 'app'),
@@ -33,7 +34,13 @@ const config = {
       title: 'Webpack Demo',
     }),
     plugin,
+    new BabiliPlugin(),
   ],
+  performance: {
+    hints: 'warning',
+    maxEntrypointSize: 100000, // bytes
+    maxAssetSize: 450000, // bytes
+  },
   module:{
     rules:[
       {
