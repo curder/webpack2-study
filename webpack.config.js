@@ -6,7 +6,12 @@ const PATHS = {
     dist: path.join(__dirname, 'dist'),
 }
 
-module.exports = {
+const config = {
+    devServer: {
+        contentBase: PATHS.dist,
+        host: process.env.HOST,
+        port: 9000
+    },
     entry: {
         app: PATHS.app,
     },
@@ -20,3 +25,5 @@ module.exports = {
         }),
     ]
 };
+
+module.exports = config;
